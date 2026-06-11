@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mouheb MIS Portal - Full CSS Fixed</title>
+<style>
+*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{margin:0;background:#f4f6f9;color:#1f2937}
+.hidden{display:none!important}
+.login-page{min-height:100vh;display:grid;grid-template-columns:1.2fr .8fr;background:linear-gradient(135deg,#3b0a0a,#8b1e1e,#f59e0b)}
+.hero{color:white;padding:90px}
+.logo,.side-logo{width:90px;height:90px;background:white;color:#8b1e1e;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:48px;font-weight:bold;box-shadow:0 15px 30px rgba(0,0,0,.25)}
+.hero h1{font-size:52px;margin:20px 0 5px}.hero h2{color:#ffe082}
+.chips span{display:inline-block;padding:10px 15px;margin:8px;background:rgba(255,255,255,.18);border-radius:999px}
+.login-card{background:white;padding:55px;margin:auto 60px auto 0;border-radius:24px;box-shadow:0 20px 55px rgba(0,0,0,.35)}
+.login-card h2{font-size:34px;color:#8b1e1e}
+label{display:block;margin-top:15px;font-weight:bold}
+input,select{width:100%;padding:12px;margin-top:7px;border:1px solid #cbd5e1;border-radius:10px}
+button{border:none;background:#8b1e1e;color:white;padding:12px 16px;border-radius:10px;font-weight:bold;cursor:pointer;margin-top:10px}
+button:hover{background:#5d1212}
+#error{color:red}.demo{margin-top:18px;padding:15px;background:#fff7ed;border-radius:12px}
+#app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+aside{background:#222936;color:white;padding:22px;position:sticky;top:0;height:100vh}
+.side-logo{width:75px;height:75px;font-size:38px;margin-bottom:10px}
+#roleBox{background:#f59e0b;color:#111827;padding:12px;border-radius:12px;text-align:center;font-weight:bold;margin:18px 0}
+aside button{display:block;width:100%;text-align:left;background:#394150;margin:7px 0}.logout{background:#dc2626!important}
+main{padding:28px}
+header{background:white;padding:22px;border-radius:18px;display:flex;justify-content:space-between;box-shadow:0 5px 20px rgba(0,0,0,.08)}
+header h1{margin:0;color:#8b1e1e}.badge{background:#ffe0b2;color:#5d4037;padding:12px 18px;border-radius:999px;font-weight:bold;height:fit-content}
+.page{margin-top:24px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:22px}
+.card{color:white;padding:22px;border-radius:18px;box-shadow:0 8px 25px rgba(0,0,0,.13)}
+.card h3{margin:0 0 12px}.card p{font-size:34px;font-weight:bold;margin:0}
+.red{background:linear-gradient(135deg,#8b1e1e,#dc2626)}.orange{background:linear-gradient(135deg,#d97706,#f59e0b)}
+.green{background:linear-gradient(135deg,#15803d,#22c55e)}.blue{background:linear-gradient(135deg,#1d4ed8,#38bdf8)}
+.panel{background:white;padding:22px;border-radius:18px;box-shadow:0 5px 20px rgba(0,0,0,.08);margin-bottom:22px}
+.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+.chart{height:250px;display:flex;align-items:end;gap:18px;border-bottom:2px solid #cbd5e1;padding:15px}
+.chart div{flex:1;background:linear-gradient(#f59e0b,#8b1e1e);color:white;border-radius:10px 10px 0 0;text-align:center;padding-top:8px;font-weight:bold}
+.form-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+table{width:100%;border-collapse:collapse;background:white;border-radius:18px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,.08)}
+th,td{padding:14px;border-bottom:1px solid #e5e7eb;text-align:left}th{background:#222936;color:white}
+.ok{color:green;font-weight:bold}.bad{color:red;font-weight:bold}
+.log-item{background:#f8fafc;padding:12px;border-left:5px solid #8b1e1e;border-radius:8px;margin:8px 0}
+.rating-stars{color:#f59e0b;font-size:18px;font-weight:bold}
+@media(max-width:900px){.login-page,#app,.cards,.form-grid,.grid{grid-template-columns:1fr}.hero{padding:45px}.login-card{margin:20px}aside{position:relative;height:auto}}
+</style>
+</head>
+<body>
+
+<section id="loginPage" class="login-page">
+  <div class="hero">
+    <div class="logo">M</div>
+    <h1>Mouheb MIS Portal</h1>
+    <h2>Steakz Restaurant Chain</h2>
+    <p>Full interactive Management Information System for restaurant operations.</p>
+    <div class="chips">
+      <span>Orders</span><span>Stock</span><span>People Rating</span><span>Reports</span><span>Admin</span>
+    </div>
+  </div>
+
+  <div class="login-card">
+    <h2>Login</h2>
+    <label>Username</label><input id="username" placeholder="staff / manager / admin">
+    <label>Password</label><input id="password" type="password" placeholder="123456">
+    <button onclick="login()">Login</button>
+    <p id="error"></p>
+    <div class="demo"><b>Demo Accounts</b><br>staff / 123456<br>manager / 123456<br>admin / 123456</div>
+  </div>
+</section>
+
+<section id="app" class="hidden">
+  <aside>
+    <div class="side-logo">M</div>
+    <h2>Mouheb MIS</h2>
+    <p>Steakz Project</p>
+    <div id="roleBox">Role</div>
+    <button onclick="showPage('dashboard')">🏠 Dashboard</button>
+    <button onclick="showPage('orders')">🧾 Orders</button>
+    <button onclick="showPage('inventory')">📦 Stock / Inventory</button>
+    <button onclick="showPage('people')">⭐ People Rating</button>
+    <button class="managerOnly" onclick="showPage('reports')">📊 Reports</button>
+    <button class="adminOnly" onclick="showPage('users')">🔐 Users</button>
+    <button onclick="showPage('activity')">📝 Activity Log</button>
+    <button class="logout" onclick="logout()">Logout</button>
+  </aside>
+
+  <main>
+    <header>
+      <div><h1 id="pageTitle">Dashboard</h1><p>Restaurant Management Information System</p></div>
+      <div class="badge">Developed by Mouheb</div>
+    </header>
+
+    <section id="dashboard" class="page">
+      <div class="cards">
+        <div class="card red"><h3>Total Sales</h3><p id="salesBox">£0</p></div>
+        <div class="card orange"><h3>Orders</h3><p id="orderCount">0</p></div>
+        <div class="card green"><h3>Low Stock</h3><p id="stockCount">0</p></div>
+        <div class="card blue"><h3>Average Rating</h3><p id="ratingBox">0/5</p></div>
+      </div>
+      <div class="grid">
+        <div class="panel"><h2>Weekly Sales Chart</h2><div class="chart"><div style="height:50%">Mon</div><div style="height:68%">Tue</div><div style="height:60%">Wed</div><div style="height:80%">Thu</div><div style="height:95%">Fri</div><div style="height:90%">Sat</div><div style="height:58%">Sun</div></div></div>
+        <div class="panel"><h2>System Summary</h2><p>This system lets staff update orders and stock, managers view reports and customer ratings, and admins control users.</p><p><b>Changes made:</b> <span id="changeCount">0</span></p></div>
+      </div>
+    </section>
+
+    <section id="orders" class="page hidden">
+      <div class="panel"><h2>Add New Order</h2><div class="form-grid"><input id="newCustomer" placeholder="Customer name"><input id="newBranch" placeholder="Branch"><input id="newItems" placeholder="Items"><input id="newAmount" placeholder="Amount e.g. 25"></div><button onclick="addOrder()">Add Order</button></div>
+      <table id="ordersTable"></table>
+    </section>
+
+    <section id="inventory" class="page hidden">
+      <div class="panel"><h2>Update Stock</h2><p>Change stock numbers and click update. The status changes automatically.</p></div>
+      <table id="inventoryTable"></table>
+    </section>
+
+    <section id="people" class="page hidden">
+      <div class="panel"><h2>Add Customer Rating</h2><div class="form-grid"><input id="personName" placeholder="Customer name"><select id="personRating"><option value="5">5 - Excellent</option><option value="4">4 - Good</option><option value="3">3 - Average</option><option value="2">2 - Poor</option><option value="1">1 - Bad</option></select><input id="personFeedback" placeholder="Feedback comment"><button onclick="addRating()">Add Rating</button></div></div>
+      <table id="peopleTable"></table>
+    </section>
+
+    <section id="reports" class="page hidden">
+      <div class="cards"><div class="card red"><h3>London</h3><p>£3,200</p></div><div class="card orange"><h3>Manchester</h3><p>£2,850</p></div><div class="card blue"><h3>Birmingham</h3><p>£2,400</p></div></div>
+      <table><tr><th>Report</th><th>Value</th><th>Management Decision</th></tr><tr><td>Best Seller</td><td>Ribeye Steak</td><td>Increase stock of beef steak</td></tr><tr><td>Lowest Stock</td><td id="lowestStockCell">-</td><td>Send reorder request to supplier</td></tr><tr><td>Customer Satisfaction</td><td id="reportRatingCell">-</td><td>Improve service training if rating drops</td></tr></table>
+    </section>
+
+    <section id="users" class="page hidden"><div class="panel"><h2>Admin User Management</h2><p>Only the administrator can activate or disable users.</p></div><table id="usersTable"></table></section>
+    <section id="activity" class="page hidden"><div class="panel"><h2>Activity Log</h2><div id="logBox"></div></div></section>
+  </main>
+</section>
+
+<script>
+const users={staff:{password:"123456",role:"Staff",level:1},manager:{password:"123456",role:"Manager",level:2},admin:{password:"123456",role:"Administrator",level:3}};
+let currentUser=null,changes=0;
+let orders=[{id:"ORD101",customer:"John Smith",branch:"London",items:"Ribeye Steak x2",amount:58,status:"Preparing"},{id:"ORD102",customer:"Amira Khan",branch:"Manchester",items:"Burger Combo x3",amount:42,status:"Served"},{id:"ORD103",customer:"Daniel Brown",branch:"Birmingham",items:"Chicken Grill x1",amount:18,status:"Preparing"}];
+let inventory=[{item:"Beef Steak",stock:42,level:20,supplier:"FreshMeat UK"},{item:"Chicken",stock:11,level:15,supplier:"FoodPro"},{item:"Potatoes",stock:8,level:10,supplier:"Farm Direct"},{item:"Soft Drinks",stock:95,level:30,supplier:"DrinkHub"}];
+let ratings=[{name:"John Smith",rating:5,feedback:"Excellent food and fast service"},{name:"Amira Khan",rating:4,feedback:"Good quality and clean restaurant"},{name:"Daniel Brown",rating:3,feedback:"Food was good but service was slow"}];
+let systemUsers=[{username:"staff",role:"Staff",access:"Level 1",status:"Active"},{username:"manager",role:"Manager",access:"Level 2",status:"Active"},{username:"admin",role:"Administrator",access:"Level 3",status:"Active"}];
+let logs=[];
+function login(){const u=document.getElementById("username").value.trim().toLowerCase();const p=document.getElementById("password").value.trim();if(users[u]&&users[u].password===p){currentUser=users[u];document.getElementById("loginPage").classList.add("hidden");document.getElementById("app").classList.remove("hidden");document.getElementById("roleBox").innerText=currentUser.role+" Access";document.querySelectorAll(".managerOnly").forEach(btn=>btn.style.display=currentUser.level>=2?"block":"none");document.querySelectorAll(".adminOnly").forEach(btn=>btn.style.display=currentUser.level>=3?"block":"none");addLog("Logged in as "+currentUser.role);renderAll();showPage("dashboard")}else document.getElementById("error").innerText="Invalid username or password."}
+function logout(){location.reload()}
+function showPage(id){if(id==="reports"&&currentUser.level<2){alert("Manager access required.");return}if(id==="users"&&currentUser.level<3){alert("Administrator access required.");return}document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));document.getElementById(id).classList.remove("hidden");document.getElementById("pageTitle").innerText=id.charAt(0).toUpperCase()+id.slice(1);renderAll()}
+function addLog(m){changes++;logs.unshift(new Date().toLocaleTimeString()+" - "+m)}
+function totalSales(){return orders.reduce((s,o)=>s+Number(o.amount||0),0)}
+function averageRating(){return ratings.length?(ratings.reduce((s,r)=>s+Number(r.rating),0)/ratings.length).toFixed(1):0}
+function renderDashboard(){document.getElementById("salesBox").innerText="£"+totalSales();document.getElementById("orderCount").innerText=orders.length;document.getElementById("stockCount").innerText=inventory.filter(i=>Number(i.stock)<Number(i.level)).length;document.getElementById("ratingBox").innerText=averageRating()+"/5";document.getElementById("changeCount").innerText=changes;const lowest=[...inventory].sort((a,b)=>Number(a.stock)-Number(b.stock))[0];document.getElementById("lowestStockCell").innerText=lowest?`${lowest.item} (${lowest.stock})`:"-";document.getElementById("reportRatingCell").innerText=averageRating()+"/5"}
+function renderOrders(){let h="<tr><th>ID</th><th>Customer</th><th>Branch</th><th>Items</th><th>Amount</th><th>Status</th><th>Action</th></tr>";orders.forEach((o,i)=>{h+=`<tr><td>${o.id}</td><td>${o.customer}</td><td>${o.branch}</td><td>${o.items}</td><td><input id="amount${i}" value="${o.amount}"></td><td><select id="status${i}"><option ${o.status==="Preparing"?"selected":""}>Preparing</option><option ${o.status==="Served"?"selected":""}>Served</option><option ${o.status==="Cancelled"?"selected":""}>Cancelled</option><option ${o.status==="Refunded"?"selected":""}>Refunded</option></select></td><td><button onclick="updateOrder(${i})">Save</button></td></tr>`});document.getElementById("ordersTable").innerHTML=h}
+function updateOrder(i){const old=orders[i].status;const oldA=orders[i].amount;orders[i].status=document.getElementById("status"+i).value;orders[i].amount=Number(document.getElementById("amount"+i).value||0);alert(orders[i].id+" updated.");addLog(`${orders[i].id} changed from ${old}/£${oldA} to ${orders[i].status}/£${orders[i].amount}`);renderAll()}
+function addOrder(){const id="ORD"+(101+orders.length);orders.push({id,customer:document.getElementById("newCustomer").value||"Walk-in Customer",branch:document.getElementById("newBranch").value||"London",items:document.getElementById("newItems").value||"New Meal",amount:Number(document.getElementById("newAmount").value||0),status:"Preparing"});addLog("New order created: "+id);renderAll()}
+function renderInventory(){let h="<tr><th>Item</th><th>Stock</th><th>Reorder Level</th><th>Supplier</th><th>Status</th><th>Action</th></tr>";inventory.forEach((it,i)=>{const st=Number(it.stock)<Number(it.level)?"Low Stock":"OK";h+=`<tr><td>${it.item}</td><td><input id="stock${i}" value="${it.stock}"></td><td><input id="level${i}" value="${it.level}"></td><td><input id="supplier${i}" value="${it.supplier}"></td><td class="${st==="OK"?"ok":"bad"}">${st}</td><td><button onclick="updateStock(${i})">Update</button></td></tr>`});document.getElementById("inventoryTable").innerHTML=h}
+function updateStock(i){const old=inventory[i].stock;inventory[i].stock=Number(document.getElementById("stock"+i).value||0);inventory[i].level=Number(document.getElementById("level"+i).value||0);inventory[i].supplier=document.getElementById("supplier"+i).value||"Unknown";addLog(`${inventory[i].item} stock changed from ${old} to ${inventory[i].stock}`);renderAll()}
+function stars(n){return"★".repeat(Number(n))+"☆".repeat(5-Number(n))}
+function renderPeople(){let h="<tr><th>Customer</th><th>Rating</th><th>Feedback</th><th>Change Rating</th><th>Action</th></tr>";ratings.forEach((r,i)=>{h+=`<tr><td>${r.name}</td><td class="rating-stars">${stars(r.rating)} (${r.rating}/5)</td><td>${r.feedback}</td><td><select id="rate${i}"><option value="5" ${r.rating==5?"selected":""}>5</option><option value="4" ${r.rating==4?"selected":""}>4</option><option value="3" ${r.rating==3?"selected":""}>3</option><option value="2" ${r.rating==2?"selected":""}>2</option><option value="1" ${r.rating==1?"selected":""}>1</option></select></td><td><button onclick="updateRating(${i})">Update</button></td></tr>`});document.getElementById("peopleTable").innerHTML=h}
+function addRating(){ratings.push({name:document.getElementById("personName").value||"New Customer",rating:Number(document.getElementById("personRating").value),feedback:document.getElementById("personFeedback").value||"No feedback"});addLog("New customer rating added.");renderAll()}
+function updateRating(i){const old=ratings[i].rating;ratings[i].rating=Number(document.getElementById("rate"+i).value);addLog(`${ratings[i].name} rating changed from ${old} to ${ratings[i].rating}`);renderAll()}
+function renderUsers(){let h="<tr><th>Username</th><th>Role</th><th>Access</th><th>Status</th><th>Action</th></tr>";systemUsers.forEach((u,i)=>{h+=`<tr><td>${u.username}</td><td>${u.role}</td><td>${u.access}</td><td class="${u.status==="Active"?"ok":"bad"}">${u.status}</td><td><button onclick="toggleUser(${i})">${u.status==="Active"?"Disable":"Activate"}</button></td></tr>`});document.getElementById("usersTable").innerHTML=h}
+function toggleUser(i){systemUsers[i].status=systemUsers[i].status==="Active"?"Disabled":"Active";addLog("User "+systemUsers[i].username+" changed to "+systemUsers[i].status);renderUsers()}
+function renderActivity(){document.getElementById("logBox").innerHTML=logs.length?logs.map(l=>`<div class="log-item">${l}</div>`).join(""):"<p>No activity yet.</p>"}
+function renderAll(){renderDashboard();renderOrders();renderInventory();renderPeople();renderUsers();renderActivity()}
+</script>
+</body>
+</html>
